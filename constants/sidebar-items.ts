@@ -1,49 +1,54 @@
 
 import {
-    Command,
     Image,
     Mouse,
     Music4,
     SquareMousePointer,
     Timer,
     TypeOutline,
-  } from "lucide-react";
+} from "lucide-react";
 
 export const sidebarItems = [
     {
       title: "Text",
-      url: "#",
+      type: "textNode",
       icon: TypeOutline,
       isActive: true,
+      data: { label: "Text Node" },
     },
     {
       title: "Sound",
-      url: "#",
+      type: "soundNode",
       icon: Music4,
       isActive: true,
+      data: { label: "Sound Node" },
     },
     {
       title: "Mouse Events",
-      url: "#",
+      type: "mouseNode",
       icon: Mouse,
       isActive: true,
+      data: { label: "Mouse Events Node" },
     },
     {
       title: "Timer",
-      url: "#",
+      type: "timerNode",
       icon: Timer,
       isActive: false,
+      data: { label: "Timer Node" },
     },
     {
       title: "Image",
-      url: "#",
+      type: "imageNode",
       icon: Image,
       isActive: false,
+      data: { label: "Image Node" },
     },
     {
       title: "Button",
-      url: "#",
+      type: "buttonNode",
       icon: SquareMousePointer,
       isActive: false,
+      data: { label: "Button Node" },
     },
-  ]
+]

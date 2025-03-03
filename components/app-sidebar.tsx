@@ -15,10 +15,16 @@ import {
 } from "@/components/ui/sidebar";
 import { sidebarItems } from "@/constants/sidebar-items";
 import { Command } from "lucide-react";
+import { DragEvent } from "react";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [activeItem, setActiveItem] = React.useState(sidebarItems[0]);
   const { setOpen } = useSidebar();
+
+  const onDragStart = (event: DragEvent<HTMLLIElement>, item: any) => {
+    event.dataTransfer.setData('application/reactflow', item.type);
+    event.dataTransfer.effectAllowed = 'move';
+  };
 
   return (
     <Sidebar collapsible="icon" variant="inset" {...props}>
@@ -47,7 +53,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenu>
               <SidebarTrigger className="ml-1" />
               {sidebarItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem 
+                  key={item.title}
+                  draggable
+                  onDragStart={(e) => onDragStart(e, item)}
+                >
                   <SidebarMenuButton
                     tooltip={{
                       children: item.title,
@@ -58,7 +68,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       setOpen(true);
                     }}
                     isActive={activeItem.title === item.title}
-                    className="px-2.5 md:px-2"
+                    className="px-2.5 md:px-2 cursor-move"
                   >
                     <item.icon />
                     <span>{item.title}</span>

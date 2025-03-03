@@ -16,6 +16,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { FlowCanvas } from "@/components/FlowCanvas";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,7 +62,7 @@ export default function RootLayout({
                 </Breadcrumb>
               </div>
             </header>
-            {children}
+       {children}
           </SidebarInset>
         </SidebarProvider>
       </body>
