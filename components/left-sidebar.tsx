@@ -17,12 +17,13 @@ import { sidebarItems } from "@/constants/sidebar-items";
 import { Command } from "lucide-react";
 import { DragEvent } from "react";
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function LeftSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [activeItem, setActiveItem] = React.useState(sidebarItems[0]);
   const { setOpen } = useSidebar();
 
   const onDragStart = (event: DragEvent<HTMLLIElement>, item: any) => {
     event.dataTransfer.setData('application/reactflow', item.type);
+    event.dataTransfer.setData('application/nodeTitle', item.title);
     event.dataTransfer.effectAllowed = 'move';
   };
 

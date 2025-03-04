@@ -6,7 +6,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { LeftSidebar } from "@/components/left-sidebar";
 import { Separator } from "@/components/ui/separator";
 import {
   Breadcrumb,
@@ -17,6 +17,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { FlowCanvas } from "@/components/FlowCanvas";
+import { RightSidebar } from "@/components/right-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,7 +45,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SidebarProvider>
-          <AppSidebar />
+          <LeftSidebar />
           <SidebarInset>
             <header className="flex h-16 shrink-0 items-center gap-2">
               <div className="flex items-center gap-2 px-4">
@@ -62,8 +63,9 @@ export default function RootLayout({
                 </Breadcrumb>
               </div>
             </header>
-       {children}
+            {children}
           </SidebarInset>
+          <RightSidebar/>
         </SidebarProvider>
       </body>
     </html>
