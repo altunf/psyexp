@@ -145,16 +145,6 @@ export type NodeHeaderMenuActionProps = Omit<
   trigger?: ReactNode;
 };
 
-/**
- * Renders a header action that opens a dropdown menu when clicked. The dropdown
- * trigger is a button with an ellipsis icon. The trigger's content can be changed
- * by using the `trigger` prop.
- *
- * Any children passed to the `<NodeHeaderMenuAction />` component will be rendered
- * inside the dropdown menu. You can read the docs for the shadcn dropdown menu
- * here: https://ui.shadcn.com/docs/components/dropdown-menu
- *
- */
 export const NodeHeaderMenuAction = forwardRef<
   HTMLButtonElement,
   NodeHeaderMenuActionProps
@@ -173,7 +163,6 @@ export const NodeHeaderMenuAction = forwardRef<
 
 NodeHeaderMenuAction.displayName = "NodeHeaderMenuAction";
 
-/* NODE HEADER DELETE ACTION --------------------------------------- */
 
 export const NodeHeaderDeleteAction = () => {
   const id = useNodeId();

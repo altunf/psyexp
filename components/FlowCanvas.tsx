@@ -1,5 +1,4 @@
 "use client";
-
 import {
   ReactFlow,
   Background,
@@ -11,12 +10,17 @@ import {
   Edge,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import NodeHeaderDemo from "./NodeHeaderDemo";
+import CustomNode from "./CustomNode";
 
-type CustomNode = Node<{ label: string; title: string, iconName: string }>;
+type CustomNode = Node<{
+  id: string;
+  title: string;
+  iconName: string;
+  itemType: string;
+}>;
 
 const nodeTypes = {
-  nodeHeader: NodeHeaderDemo,
+  nodeHeader: CustomNode,
 };
 
 export function FlowCanvas() {
@@ -30,24 +34,25 @@ export function FlowCanvas() {
 
   const onDrop = (event: React.DragEvent) => {
     event.preventDefault();
-
-    const type = event.dataTransfer.getData("application/reactflow");
     const title = event.dataTransfer.getData("application/nodeTitle");
-    const iconName =  event.dataTransfer.getData('application/nodeIcon');
+    const iconName = event.dataTransfer.getData("application/nodeIcon");
+    const itemType = event.dataTransfer.getData("application/itemType");
 
     const position = {
       x: event.clientX - event.currentTarget.getBoundingClientRect().left,
       y: event.clientY - event.currentTarget.getBoundingClientRect().top,
     };
+    const nodeId = `node-${Date.now()}`;
 
     const newNode: CustomNode = {
-      id: `${type}-${nodes.length + 1}`,
-      type,
+      id: nodeId,
+      type: "nodeHeader",
       position,
       data: {
-        label: `${type} node`,
-        title: `${title}`,
-        iconName: `${iconName}`
+        id: nodeId,
+        title: title || "New Node",
+        iconName: iconName || "",
+        itemType: itemType || "text",
       },
     };
     setNodes((nds) => [...nds, newNode]);

@@ -14,7 +14,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { sidebarItems } from "@/constants/sidebar-items";
-import { Command } from "lucide-react";
+import { Command, GripVertical } from "lucide-react";
 import { DragEvent } from "react";
 
 export function LeftSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -24,6 +24,7 @@ export function LeftSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) 
   const onDragStart = (event: DragEvent<HTMLLIElement>, item: any) => {
     event.dataTransfer.setData('application/reactflow', item.type);
     event.dataTransfer.setData('application/nodeTitle', item.title);
+    event.dataTransfer.setData('application/itemType', item.itemType);
     event.dataTransfer.effectAllowed = 'move';
   };
 
@@ -69,10 +70,11 @@ export function LeftSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) 
                       setOpen(true);
                     }}
                     isActive={activeItem.title === item.title}
-                    className="px-2.5 md:px-2 cursor-move"
+                    className="px-2.5 md:px-2 cursor-move flex items-center jus"
                   >
                     <item.icon />
                     <span>{item.title}</span>
+                  <GripVertical  className="ml-auto"/>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
